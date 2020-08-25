@@ -9,34 +9,16 @@ class TasksController extends Controller
 {
     public function searchTasks()
     {
-    	$tasks = [
-			[
-				"id" 	=> 1,
-				"name"	=> "Realizar Tarefa 1",
-				"complete" => true
-			],
-			[
-				"id" 	=> 2,
-				"name"	=> "Realizar Tarefa 2",
-				"complete" => false
-			],
-			[
-				"id" 	=> 3,
-				"name"	=> "Realizar Tarefa 3",
-				"complete" => false
-			],
-			[
-				"id" 	=> 4,
-				"name"	=> "Realizar Tarefa 4",
-				"complete" => true
-			]
-		];
-
-		return Task::all(); // model
+    	return Task::all(); // model
     }
 
-    public function storeTasks()
+    public function storeTasks(Request $request)
     {
-    	return "OK!";
+    	$task = Task::create([
+    		'name'		=> $request->input('name'),
+    		'complete'	=> $request->input('complete')
+    	]);
+
+    	return $task;
     }
 }
