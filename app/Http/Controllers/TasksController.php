@@ -26,4 +26,19 @@ class TasksController extends Controller
     {
          return $task;
     }
+
+    public function updateTask(Request $request, Task $task)
+    {
+        $task->name = $request->input('name');
+        $task->save();
+
+        return $task;
+    }
+
+    public function deleteTask(Task $task)
+    {
+        $task->delete();
+
+        return response()->json(['success'=>true]);
+    }
 }
